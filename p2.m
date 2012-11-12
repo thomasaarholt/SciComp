@@ -6,47 +6,84 @@
 m = 50
 n = 5
 
-
+%%
+% Creating t, the 0-1 vector with m spaces.
 t = linspace(0,1,m)';
 
+%%
+% Creating a vandermonde matrix (the right way around with fliplr)
 A = fliplr(vander(t));
 
+%%
+% Removing the entries after the fifth row - we don't want the higher
+% powers)
 n2 = n + 1
 A(:,n2:end)=[];
 b = cos(4*t);
 
-x1 = A\b
+%% 
+% What does cos(4t) look like?
 
-COS = plot(t,b,'r');
+COS = plot(t,b,'r-.');
+set(COS,'LineWidth',15);
+
 hold on
-BACKS = plot(t,A*x1,'b');
 
-set(COS,'LineWidth',10);
-set(BACKS,'LineWidth',7);
+%%
+% Solving by Matlab's backslash command
+x(:,1) = A\b;
 
+BACKS = plot(t,A*x(:,1),'b');
+set(BACKS,'LineWidth',9);
 
-x2 = A'*A\A'*b
+%%
+% Finding the normal equations by multiplying with the transpose of A on
+% both sides -> A^T * A * x = A^T * b. Rearranging:
 
-NORMAL = plot(t,A*x2,'g');
+x(:,2) = (A'*A)\(A'*b);
+%%
+% Plotting the normal equations solution:
+NORMAL = plot(t,A*x(:,2),'g');
+set(NORMAL,'LineWidth',6);
 
-set(NORMAL,'LineWidth',5);
-
+%% 
+% Finding the solution by QR factorisation: 
 [Q,R] = qr(A);
-x3 = R\Q'*b
+x(:,3) = R\Q'*b;
 
+%%
+% Plotting the qr solution:
 
-QR = plot(t,A*x3,'y')
-set(QR,'LineWidth',2)
+QR = plot(t,A*x(:,3),'y')
+set(QR,'LineWidth',3)
 
-
+%% 
+% Finding the solution by svd:
 [U,S,V] = svd(A,0);
-
+%%
+% Simplifying for later:
 G = U * S * V';
+%%
+% Solving for svd
+x(:,4) = (G'*G)\(G'*b);
 
-x4 = (G'*G)\(G'*b)
-
-SVD = plot(t,A*x4,'black');
-set(SVD,'LineWidth',5)
-
+%%
+% Plotting the svd solution, adding pretty things:
+SVD = plot(t,A*x(:,4),'black');
+set(SVD,'LineWidth',2)
+legend('COS','BACKSLASH','NORMAL','QR','SVD')
+title('Solving y = cos(4t) in different ways')
+xlabel('radians');
+ylabel('function solution')
 hold off
+
+%% 
+% Solutions of x:
+x
+%%
+% Norms:
+for c = 1:4
+    norm(A*x(:,c)-b,2)
+end
+
 
