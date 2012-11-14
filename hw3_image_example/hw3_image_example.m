@@ -32,6 +32,8 @@ axis equal, axis tight
 % vector.
 v = reshape(u, n*n, 1);
 
+% L IS THE BLURRING!
+
 
 % Do 10 steps of blurring
 for i=1:10
@@ -48,9 +50,13 @@ caxis([0 1])
 colormap(gray)
 axis equal, axis tight
 
+edgemap = u - ublur;
+
+unsharp = u + edgemap;
+
 
 %% Output original and result side-by-side
 % You could look at the resulting file with a web browser or image
 % viewer
-result = [u  ublur];
+result = [u  unsharp];
 imwrite(result, 'result.png')
