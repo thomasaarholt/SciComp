@@ -1,0 +1,15 @@
+%% --------------------------------------------------------
+Thomas Aarholt (12):
+      Started solving Problem 2
+      Almost finished P2, toyed with P4
+      Improved p2 on HW3
+      fixed an error
+      Solved problem 4 (partially)!!
+      Ellipsis and image working!
+      More updates to ellipse
+      cleaned up
+      Fixed a bug with git
+      got rid of some git code in my files (?)
+      Massive improvement on Problem 4 and 5!
+      ALL GOOD! Just waiting for gitlog now!
+%% --------------------------------------------------------

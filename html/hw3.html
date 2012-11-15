@@ -1,0 +1,654 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>SciComp Homework 3</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-11-15"><meta name="DC.source" content="hw3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>SciComp Homework 3</h1><!--introduction--><p><b>By Thomas M Aarholt, 15th November 2012</b></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Problem 1</a></li><li><a href="#2">Problem 2</a></li><li><a href="#6">Problem 3</a></li><li><a href="#7">Problem 4</a></li><li><a href="#8">PART 1</a></li><li><a href="#10">PART 2</a></li><li><a href="#12">PART 3</a></li><li><a href="#14">Problem 5</a></li></ul></div><h2>Problem 1<a name="1"></a></h2><p>Hello World git! Here follows the git shortlog:</p><pre class="codeinput">type(<span class="string">'gitlog.txt'</span>)
+</pre><pre class="codeoutput">
+%% --------------------------------------------------------
+Thomas Aarholt (12):
+      Started solving Problem 2
+      Almost finished P2, toyed with P4
+      Improved p2 on HW3
+      fixed an error
+      Solved problem 4 (partially)!!
+      Ellipsis and image working!
+      More updates to ellipse
+      cleaned up
+      Fixed a bug with git
+      got rid of some git code in my files (?)
+      Massive improvement on Problem 4 and 5!
+      ALL GOOD! Just waiting for gitlog now!
+%% --------------------------------------------------------
+
+</pre><h2>Problem 2<a name="2"></a></h2><p>I create a 0-1 matrix with 50 columns, turn it into a vandermonde matrix where all the values previously in the columns 1-50 now are in column 2, rows 1-50, with the rest of the columns formatted according to the vandermonde matrix.</p><pre class="codeinput">m = 50;
+n = 5;
+
+t = linspace(0,1,m)'; <span class="comment">% Creating t, the 0-1 vector with m spaces.</span>
+A = fliplr(vander(t)); <span class="comment">% Creating a vandermonde matrix</span>
+                       <span class="comment">% (the right way around with fliplr)</span>
+
+A = A(:,1:n); <span class="comment">% Removing the entries after the fifth row</span>
+b = cos(4*t); <span class="comment">% The "real" cos(4*t)</span>
+</pre><pre class="codeinput">figure(1);
+hold <span class="string">on</span>
+
+COS = plot(t,b,<span class="string">'r-.'</span>); <span class="comment">% What does cos(4t) look like?</span>
+set(COS,<span class="string">'LineWidth'</span>,15);
+
+xx(:,1) = A\b; <span class="comment">% Solving by Matlab's backslash command</span>
+BACKS = plot(t,A*xx(:,1),<span class="string">'b'</span>);
+set(BACKS,<span class="string">'LineWidth'</span>,9);
+
+
+xx(:,2) = (A'*A)\(A'*b); <span class="comment">% Finding the normal equations by</span>
+                         <span class="comment">% multiplying with the transpose of A</span>
+NORMAL = plot(t,A*xx(:,2),<span class="string">'g'</span>);
+set(NORMAL,<span class="string">'LineWidth'</span>,6);
+
+[Q,R] = qr(A); <span class="comment">% Finding the solution by QR factorisation:</span>
+xx(:,3) = R\Q'*b;
+QR = plot(t,A*xx(:,3),<span class="string">'m'</span>);
+set(QR,<span class="string">'LineWidth'</span>,3)
+
+[U,S,V] = svd(A,0); <span class="comment">% Finding the solution by svd:</span>
+G = U * S * V';
+xx(:,4) = (G'*G)\(G'*b);
+
+SVD = plot(t,A*xx(:,4),<span class="string">'black'</span>);
+set(SVD,<span class="string">'LineWidth'</span>,2)
+
+legend(<span class="string">'COS'</span>,<span class="string">'BACKSLASH'</span>,<span class="string">'NORMAL'</span>,<span class="string">'QR'</span>,<span class="string">'SVD'</span>)
+title(<span class="string">'Solving y = cos(4t) in different ways'</span>)
+xlabel(<span class="string">'radians'</span>);
+ylabel(<span class="string">'function solution'</span>)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="hw3_01.png" alt=""> <p><b>Norms:</b></p><pre class="codeinput"><span class="keyword">for</span> c = 1:4
+    N(c) = norm(A*xx(:,c)-b,2);
+<span class="keyword">end</span>
+</pre><p><b>Table of solutions of x and 2-norms:</b></p><pre class="codeinput">normtable(xx,N)
+</pre><pre class="codeoutput">================================================================================
+            Backslash        Normal equation          QR                  SVD        
+                                                                          
+================================================================================
+x        +0.977651051050956  +0.787296437030590  -13.726690028111138  +14.993014653596203
+        -3.665759654743957  +0.977651051050360  +0.787296437042173  -13.726690028160782
+        +14.993014653670262  -3.665759654779711  +0.977651051050948  +0.787296437030584
+        -13.726690028111079  +14.993014653596113  -3.665759654743917  +0.977651051050924
+        +0.787296437030878  -13.726690028111268  +14.993014653595205  -3.665759654743045
+--------------------------------------------------------------------------------
+2-norm  +0.061356756239887  +0.061356756239888  +0.061356756239887  +0.061356756239888
+================================================================================
+</pre><h2>Problem 3<a name="6"></a></h2><p>I have literally no idea how to do this. Have one of the top rated pictures of all time on reddit.com/r/cats instead:</p><pre class="codeinput">cats = imread(<span class="string">'cats.jpg'</span>);
+figure(2); imagesc(cats);
+axis <span class="string">equal</span>, axis <span class="string">tight</span>
+</pre><img vspace="5" hspace="5" src="hw3_02.png" alt=""> <h2>Problem 4<a name="7"></a></h2><h2>PART 1<a name="8"></a></h2><p>Starting with the unsharp mask</p><pre class="codeinput">clear <span class="string">all</span>
+
+type(<span class="string">'readimg.m'</span>)
+u = readimg(<span class="string">'testpat_blur2.png'</span>);
+
+
+
+
+type(<span class="string">'unsharpen.m'</span>)
+unsharp = unsharpen(u,10); <span class="comment">% Apply image unsharp mask</span>
+
+
+
+
+figure(3); clf; <span class="comment">% Clears figure for new images (in case it contains cats)</span>
+
+subplot(1,2,1), imagesc(u);
+type(<span class="string">'greyimg.m'</span>)
+greyimg();
+
+subplot(1,2,2), imagesc(unsharp);
+greyimg();
+</pre><pre class="codeoutput">
+%% --------------------------------------------------------
+%% readimg()
+% Code reads a square greyscale image, passes it to u
+
+function [u] = readimg(imgstring)
+u = imread(imgstring);
+u = double(u) / 255;
+
+[n,n2] = size(u);
+if (n ~= n2)
+  error('by default, this only supports square images')
+end
+end
+%% --------------------------------------------------------
+
+%% --------------------------------------------------------
+%% unsharpen() function
+% Code creates a blurry mask, subtracts it from image u to find the
+% difference, then adds the difference to the image in order to sharpen it.
+
+function [unsharp] = unsharpen(u,iterations)
+
+[n,n2] = size(u);
+
+e = ones(n,1);
+L1 = spdiags([e  -2*e  e], [-1 0 1], n, n);
+
+L1(1,1) = -1;   
+L1(end,end) = -1;
+
+I = speye(n,n);
+L = kron(L1, I) + kron(I, L1);
+
+v = reshape(u, n*n, 1);
+
+for i=1:iterations
+  v = v + 0.1*(L*v);
+end
+
+ublur = reshape(v, n, n);
+%%
+% This changes a blurring function to a unsharp mask.
+edgemap = u - ublur;
+unsharp = u + edgemap;
+
+end
+%% --------------------------------------------------------
+
+%% --------------------------------------------------------
+%% greyimg() function
+% Code formats images with a colour axis from 0 to 1 (grey) and equal axis.
+
+function [] = greyimg()
+caxis([0 1])
+colormap(gray)
+axis equal, axis tight
+end
+%% --------------------------------------------------------
+</pre><img vspace="5" hspace="5" src="hw3_03.png" alt=""> <p><b>Image becomes sharpened!</b></p><h2>PART 2<a name="10"></a></h2><p>What happens if we unsharpen a non-blurry image?</p><pre class="codeinput">[u] = readimg(<span class="string">'testpat_noblur.png'</span>); <span class="comment">% Read image from file</span>
+
+unsharp = unsharpen(u,10); <span class="comment">% Apply image unsharp mask</span>
+
+figure(4); clf; <span class="comment">% Clears figure for new images</span>
+
+<span class="comment">% Plots full size and zoomed versions of original image, 10 step blurring</span>
+<span class="comment">% and 100 step blurring.</span>
+subplot(3,2,1), imagesc(u);
+greyimg();
+title(<span class="string">'Original "testpat noblur.png"'</span>)
+
+subplot(3,2,2), imagesc(u);
+greyimg();
+axis([30 60 30 60])
+title(<span class="string">'Zoomed original'</span>)
+
+
+subplot(3,2,3), imagesc(unsharp);
+greyimg();
+title(<span class="string">'Unsharpened image"'</span>)
+
+
+subplot(3,2,4), imagesc(unsharp);
+greyimg();
+axis([30 60 30 60])
+title(<span class="string">'Unsharpened zoomed at edge, 10 blurring steps'</span>)
+
+unsharp100 = unsharpen(u,100);
+
+subplot(3,2,5), imagesc(unsharp100);
+greyimg();
+title(<span class="string">'Unsharpened image"'</span>)
+
+subplot(3,2,6), imagesc(unsharp100);
+greyimg();
+axis([30 60 30 60])
+title(<span class="string">'Unsharpened zoomed at edge, 100 blurring steps'</span>)
+
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="hw3_04.png" alt=""> <p>The sharpening of the image enhances the contrast between points that are already contrasting. For a unblurred image, this ramps up the "whiteness" of the image to the point of making it "grainy", as can be seen on the zoomed plot of the 100 stepped blurring image.</p><h2>PART 3<a name="12"></a></h2><pre class="codeinput">u = readimg(<span class="string">'eye.png'</span>); <span class="comment">% Read image from file</span>
+
+unsharp1 = unsharpendeg(u,10,0.1); <span class="comment">% Apply image unsharp mask</span>
+unsharp5 = unsharpendeg(u,10,0.5); <span class="comment">% Apply image unsharp mask</span>
+
+figure(5); clf; <span class="comment">% Clears figure for new images</span>
+
+<span class="comment">% Plots full size and zoomed versions of original image, 10 step blurring</span>
+<span class="comment">% and 100 step blurring.</span>
+subplot(3,1,1), imagesc(u);
+greyimg();
+title(<span class="string">'Original "testpat noblur.png"'</span>)
+
+subplot(3,1,2), imagesc(unsharp1);
+greyimg();
+title(<span class="string">'Unsharp mask with parameter 0.1'</span>)
+
+
+subplot(3,1,3), imagesc(unsharp5);
+greyimg();
+title(<span class="string">'Unsharp mask with parameter 0.5'</span>)
+</pre><img vspace="5" hspace="5" src="hw3_05.png" alt=""> <p>With the parameter set to 0.5, the image becomes a contrasty mess with no identifiable image.</p><h2>Problem 5<a name="14"></a></h2><p>For two vectors, xx and yy that are sets coordinates for plotting a ellipse around, we can use the following n x 3 matrix:</p><pre class="codeinput">xx = []; yy = [];
+A = [xx.^2, xx.*yy, yy.^2];
+
+<span class="comment">% What is the data we want to fit against?</span>
+xx = [3,1,0,-1,-2,0,-2,2]'
+yy = [3,-2,3,2,-2,-4,0,0]'
+</pre><pre class="codeoutput">
+xx =
+
+     3
+     1
+     0
+    -1
+    -2
+     0
+    -2
+     2
+
+
+yy =
+
+     3
+    -2
+     3
+     2
+    -2
+    -4
+     0
+     0
+
+</pre><p>Having a look:</p><pre class="codeinput">figure(6);
+scatter(xx,yy,100,<span class="string">'r'</span>,<span class="string">'filled'</span>)
+axis([-6,6,-6,6])
+hold <span class="string">on</span>
+grid <span class="string">on</span>
+
+type(<span class="string">'ellipse.m'</span>)
+[b,c,d] = ellipse(xx,yy)
+
+
+
+type(<span class="string">'ellipseplot.m'</span>)
+ellipseplot(b,c,d);
+</pre><pre class="codeoutput">
+%% --------------------------------------------------------
+%% ellipse() function
+% Takes a set of X and Y points and computes the b, c and d value for a
+% ellipse of equation bx^2+cxy+dy^2 = 1!
+
+function [b,c,d] = ellipse(x,y)
+    
+    format long
+   
+    A = [x.^2, x.*y, y.^2]
+
+
+    B = ones(length(x),1);
+    
+    
+    X = A\B;
+    b = X(1);
+    c = X(2);
+    d = X(3);
+end
+%% --------------------------------------------------------
+
+A =
+
+     9     9     9
+     1    -2     4
+     0     0     9
+     1    -2     4
+     4     4     4
+     0     0    16
+     4     0     0
+     4     0     0
+
+
+b =
+
+   0.257358001450461
+
+
+c =
+
+  -0.200536979030043
+
+
+d =
+
+   0.075581341521749
+
+
+%% --------------------------------------------------------
+%% ellipseplot() function
+% Takes the b, c and d values for an ellipsis of equation bx^2+cxy+dy^2 =
+% 1, and plots it!
+
+function [] = ellipseplot (b,c,d)
+
+ang = (1/2)*atan(c/(d-b));
+e = sqrt((1-tan(ang)^2)/(b-d*(tan(ang)^2)));
+f = sqrt((tan(ang)^2-1)/(b*(tan(ang))^2-d));
+
+t = linspace(0,2*pi,200);
+u = e*cos(t);
+v = f*sin(t);
+
+X = u*cos(-ang) - v*sin(-ang);
+Y = u*sin(-ang) + v*cos(-ang);
+
+plot(X,Y)
+end
+%% --------------------------------------------------------
+</pre><img vspace="5" hspace="5" src="hw3_06.png" alt=""> <p>Now we create the points, and the program finds the best fitting ellipse!</p><pre class="codeinput">figure(7);
+
+axis([-3 3 -3 3]), axis <span class="string">manual</span>, hold <span class="string">on</span>, grid <span class="string">on</span>
+x = []; y = []; button = 1;
+disp(<span class="string">'input points with mouse, button &gt;= 2 for final point'</span>)
+<span class="keyword">while</span> button == 1
+[xx,yy,button] = ginput(1);
+x = [x; xx]; y = [y; yy]; plot(xx,yy,<span class="string">'.'</span>,<span class="string">'color'</span>,<span class="string">'red'</span>,<span class="string">'MarkerSize'</span>,32)
+<span class="keyword">end</span>
+
+[b,c,d] = ellipse(x,y);
+ellipseplot(b,c,d);
+
+clear
+</pre><pre class="codeoutput">input points with mouse, button &gt;= 2 for final point
+
+A =
+
+   0.001194546497059   0.070033955857387   4.105955678670360
+   0.977091252734183  -1.014491874848412   1.053324099722993
+   0.896817728131835   1.005154014067426   1.126577408433364
+   0.002341311134235  -0.098047538200340   4.105955678670360
+   1.032518210197712  -1.007215619694398   0.982533087103724
+   0.977091252734185   0.962466650497211   0.948060941828255
+
+</pre><img vspace="5" hspace="5" src="hw3_07.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% SciComp Homework 3
+% *By Thomas M Aarholt, 15th November 2012*
+%% Problem 1
+% Hello World git! Here follows the git shortlog:
+type('gitlog.txt')
+%% Problem 2
+% I create a 0-1 matrix with 50 columns, turn it into a vandermonde matrix
+% where all the values previously in the columns 1-50 now are in column 2,
+% rows 1-50, with the rest of the columns formatted according to the
+% vandermonde matrix.
+m = 50;
+n = 5;
+
+t = linspace(0,1,m)'; % Creating t, the 0-1 vector with m spaces.
+A = fliplr(vander(t)); % Creating a vandermonde matrix 
+                       % (the right way around with fliplr)
+
+A = A(:,1:n); % Removing the entries after the fifth row
+b = cos(4*t); % The "real" cos(4*t)
+
+%%
+figure(1);
+hold on
+
+COS = plot(t,b,'r-.'); % What does cos(4t) look like?
+set(COS,'LineWidth',15);
+
+xx(:,1) = A\b; % Solving by Matlab's backslash command
+BACKS = plot(t,A*xx(:,1),'b');
+set(BACKS,'LineWidth',9);
+
+
+xx(:,2) = (A'*A)\(A'*b); % Finding the normal equations by
+                         % multiplying with the transpose of A
+NORMAL = plot(t,A*xx(:,2),'g');
+set(NORMAL,'LineWidth',6);
+
+[Q,R] = qr(A); % Finding the solution by QR factorisation: 
+xx(:,3) = R\Q'*b;
+QR = plot(t,A*xx(:,3),'m');
+set(QR,'LineWidth',3)
+
+[U,S,V] = svd(A,0); % Finding the solution by svd:
+G = U * S * V';
+xx(:,4) = (G'*G)\(G'*b);
+
+SVD = plot(t,A*xx(:,4),'black');
+set(SVD,'LineWidth',2)
+
+legend('COS','BACKSLASH','NORMAL','QR','SVD')
+title('Solving y = cos(4t) in different ways')
+xlabel('radians');
+ylabel('function solution')
+hold off
+
+%% 
+% *Norms:*
+for c = 1:4
+    N(c) = norm(A*xx(:,c)-b,2);
+end
+
+
+%%
+% *Table of solutions of x and 2-norms:*
+normtable(xx,N)
+
+
+%% Problem 3
+% I have literally no idea how to do this. Have one of the top rated
+% pictures of all time on reddit.com/r/cats instead:
+
+cats = imread('cats.jpg');
+figure(2); imagesc(cats);
+axis equal, axis tight
+
+%% Problem 4
+%% PART 1
+% Starting with the unsharp mask
+clear all
+
+type('readimg.m')
+u = readimg('testpat_blur2.png');
+
+
+
+
+type('unsharpen.m')
+unsharp = unsharpen(u,10); % Apply image unsharp mask
+
+
+
+
+figure(3); clf; % Clears figure for new images (in case it contains cats)
+
+subplot(1,2,1), imagesc(u);
+type('greyimg.m')
+greyimg();
+
+subplot(1,2,2), imagesc(unsharp);
+greyimg();
+
+%%
+% *Image becomes sharpened!*
+
+%% PART 2
+% What happens if we unsharpen a non-blurry image?
+
+[u] = readimg('testpat_noblur.png'); % Read image from file
+
+unsharp = unsharpen(u,10); % Apply image unsharp mask
+
+figure(4); clf; % Clears figure for new images
+
+% Plots full size and zoomed versions of original image, 10 step blurring
+% and 100 step blurring.
+subplot(3,2,1), imagesc(u);
+greyimg();
+title('Original "testpat noblur.png"')
+
+subplot(3,2,2), imagesc(u);
+greyimg();
+axis([30 60 30 60])
+title('Zoomed original')
+
+
+subplot(3,2,3), imagesc(unsharp);
+greyimg();
+title('Unsharpened image"')
+
+
+subplot(3,2,4), imagesc(unsharp);
+greyimg();
+axis([30 60 30 60])
+title('Unsharpened zoomed at edge, 10 blurring steps')
+
+unsharp100 = unsharpen(u,100);
+
+subplot(3,2,5), imagesc(unsharp100);
+greyimg();
+title('Unsharpened image"')
+
+subplot(3,2,6), imagesc(unsharp100);
+greyimg();
+axis([30 60 30 60])
+title('Unsharpened zoomed at edge, 100 blurring steps')
+
+hold off
+
+%%
+% The sharpening of the image enhances the contrast between points that are
+% already contrasting. For a unblurred image, this ramps up the "whiteness"
+% of the image to the point of making it "grainy", as can be seen on the
+% zoomed plot of the 100 stepped blurring image.
+
+%% PART 3
+
+u = readimg('eye.png'); % Read image from file
+
+unsharp1 = unsharpendeg(u,10,0.1); % Apply image unsharp mask
+unsharp5 = unsharpendeg(u,10,0.5); % Apply image unsharp mask
+
+figure(5); clf; % Clears figure for new images
+
+% Plots full size and zoomed versions of original image, 10 step blurring
+% and 100 step blurring.
+subplot(3,1,1), imagesc(u);
+greyimg();
+title('Original "testpat noblur.png"')
+
+subplot(3,1,2), imagesc(unsharp1);
+greyimg();
+title('Unsharp mask with parameter 0.1')
+
+
+subplot(3,1,3), imagesc(unsharp5);
+greyimg();
+title('Unsharp mask with parameter 0.5')
+
+%%
+% With the parameter set to 0.5, the image becomes a contrasty mess with no
+% identifiable image.
+
+%% Problem 5
+% For two vectors, xx and yy that are sets coordinates for plotting a
+% ellipse around, we can use the following n x 3 matrix:
+xx = []; yy = [];
+A = [xx.^2, xx.*yy, yy.^2];
+
+% What is the data we want to fit against?
+xx = [3,1,0,-1,-2,0,-2,2]'
+yy = [3,-2,3,2,-2,-4,0,0]'
+%%
+% Having a look:
+figure(6);
+scatter(xx,yy,100,'r','filled')
+axis([-6,6,-6,6])
+hold on
+grid on
+
+type('ellipse.m')
+[b,c,d] = ellipse(xx,yy)
+
+
+
+type('ellipseplot.m')
+ellipseplot(b,c,d);
+%%
+% Now we create the points, and the program finds the best fitting ellipse!
+
+figure(7);
+
+axis([-3 3 -3 3]), axis manual, hold on, grid on
+x = []; y = []; button = 1;
+disp('input points with mouse, button >= 2 for final point')
+while button == 1
+[xx,yy,button] = ginput(1);
+x = [x; xx]; y = [y; yy]; plot(xx,yy,'.','color','red','MarkerSize',32)
+end
+
+[b,c,d] = ellipse(x,y);
+ellipseplot(b,c,d);
+
+clear
+##### SOURCE END #####
+--></body></html>
