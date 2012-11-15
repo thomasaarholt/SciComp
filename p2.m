@@ -79,7 +79,15 @@ hold off
 
 %% 
 % Solutions of x:
-xx
+
+
+%INSERT TABLE INSTEAD OF xx
+
+
+
+
+
+
 %%
 % Norms:
 for c = 1:4
@@ -124,7 +132,7 @@ greyimg();
 
 unsharp = unsharpen(u,10); % Apply image unsharp mask
 
-figure(1); clf; % Clears figure for new images
+figure(2); clf; % Clears figure for new images
 
 %%
 % Plots full size and zoomed versions of original image, 10 step blurring
@@ -168,12 +176,41 @@ hold off
 % of the image to the point of making it "grainy", as can be seen on the
 % zoomed plot of the 100 stepped blurring image.
 
+% PART 3
+
+u = readimg('eye.png'); % Read image from file
+
+unsharp1 = unsharpendeg(u,10,0.1); % Apply image unsharp mask
+unsharp5 = unsharpendeg(u,10,0.5); % Apply image unsharp mask
+
+figure(3); clf; % Clears figure for new images
+
+%%
+% Plots full size and zoomed versions of original image, 10 step blurring
+% and 100 step blurring.
+subplot(3,1,1), imagesc(u);
+greyimg();
+title('Original "testpat noblur.png"')
+
+subplot(3,1,2), imagesc(unsharp1);
+greyimg();
+title('Unsharp mask with parameter 0.1')
+
+
+subplot(3,1,3), imagesc(unsharp5);
+greyimg();
+title('Unsharp mask with parameter 0.5')
+
+%%
+% With the parameter set to 0.5, the image becomes a contrasty mess with no
+% identifiable image.
+
 %% Problem 5
 % What is the data we want to fit against?
 xx = [3,1,0,-1,-2,0,-2,2]'
 yy = [3,-2,3,2,-2,-4,0,0]'
 % Having a look:
-figure(2);
+figure(4);
 scatter(xx,yy,100,'r','filled')
 axis([-6,6,-6,6])
 hold on
@@ -189,7 +226,7 @@ grid on
 ellipseplot(b,c,d);
 %%
 
-figure(3);
+figure(5);
 
 axis([-3 3 -3 3]), axis manual, hold on, grid on
 x = []; y = []; button = 1;

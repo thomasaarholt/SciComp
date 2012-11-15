@@ -1,4 +1,6 @@
-%% Code reads a square greyscale image, passes it to u
+%% --------------------------------------------------------
+%% readimg()
+% Code reads a square greyscale image, passes it to u
 
 function [u] = readimg(imgstring)
 u = imread(imgstring);
@@ -9,3 +11,4 @@ if (n ~= n2)
   error('by default, this only supports square images')
 end
 end
+%% --------------------------------------------------------

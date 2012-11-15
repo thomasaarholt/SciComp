@@ -1,6 +1,7 @@
-%% Code creates a blurry mask, subtracts it from image u 
-% to find the difference, then adds the 
-% difference to the image in order to sharpen it.
+%% --------------------------------------------------------
+%% unsharpen() function
+% Code creates a blurry mask, subtracts it from image u to find the
+% difference, then adds the difference to the image in order to sharpen it.
 
 function [unsharp] = unsharpen(u,iterations)
 
@@ -18,7 +19,7 @@ L = kron(L1, I) + kron(I, L1);
 v = reshape(u, n*n, 1);
 
 for i=1:iterations
-  v = v + 0.01*(L*v);
+  v = v + 0.1*(L*v);
 end
 
 ublur = reshape(v, n, n);
@@ -28,3 +29,4 @@ edgemap = u - ublur;
 unsharp = u + edgemap;
 
 end
+%% --------------------------------------------------------
