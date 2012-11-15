@@ -1,5 +1,4 @@
 function [b,c,d] = ellipse(x,y)
-<<<<<<< HEAD
     
     A(:,1) = x.^2;
     A(:,2) = x.*y;
@@ -11,7 +10,6 @@ X = A\b;
 b = X(1)
 c = X(2)
 d = X(3)
-=======
     format long
    
 A(:,1) = x.^2;
@@ -26,4 +24,3 @@ A(:,1) = x.^2;
     c = X(2)
     d = X(3)
 end
->>>>>>> Fixed ellipse!

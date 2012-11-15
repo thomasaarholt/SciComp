@@ -173,7 +173,6 @@ yy = [3,-2,3,2,-2,-4,0,0]'
 scatter(xx,yy,100,'r','filled')
 axis([-6,6,-6,6])
 hold on
-<<<<<<< HEAD
 
 % Using the ellipse function to produce b,c,d:
 %
@@ -192,27 +191,12 @@ hold on
 
 [b,c,d] = ellipse(xx,yy);
 
-x = linspace(-6,6,1000);
-
-y1 = (-c*x + sqrt((c*x).^2-4*d*(b*x.^2-1)))./(2*d);
-y2 = (-c*x - sqrt((c*x).^2-4*d*(b*x.^2-1)))./(2*d);
-
-y1 = real(y1);
-y2 = real(y2);
-
-plot(x,y1);
-hold on
-plot(x,y2);
-
-hold off
-=======
 grid on
 
 [b,c,d] = ellipse(xx,yy);
 
 ellipseplot(b,c,d);
 %%
-
 clear all
 
 hold off, axis([-3 3 -3 3]), axis manual, hold on, grid on
@@ -228,4 +212,3 @@ ellipseplot(b,c,d);
 
 
 
->>>>>>> Fixed ellipse!
