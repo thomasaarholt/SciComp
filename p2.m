@@ -31,30 +31,30 @@ hold on
 
 %%
 % Solving by Matlab's backslash command
-x(:,1) = A\b;
+xx(:,1) = A\b;
 
-BACKS = plot(t,A*x(:,1),'b');
+BACKS = plot(t,A*xx(:,1),'b');
 set(BACKS,'LineWidth',9);
 
 %%
 % Finding the normal equations by multiplying with the transpose of A on
 % both sides -> A^T * A * x = A^T * b. Rearranging:
 
-x(:,2) = (A'*A)\(A'*b);
+xx(:,2) = (A'*A)\(A'*b);
 %%
 % Plotting the normal equations solution:
-NORMAL = plot(t,A*x(:,2),'g');
+NORMAL = plot(t,A*xx(:,2),'g');
 set(NORMAL,'LineWidth',6);
 
 %% 
 % Finding the solution by QR factorisation: 
 [Q,R] = qr(A);
-x(:,3) = R\Q'*b;
+xx(:,3) = R\Q'*b;
 
 %%
 % Plotting the qr solution:
 
-QR = plot(t,A*x(:,3),'y')
+QR = plot(t,A*xx(:,3),'y')
 set(QR,'LineWidth',3)
 
 %% 
@@ -65,11 +65,11 @@ set(QR,'LineWidth',3)
 G = U * S * V';
 %%
 % Solving for svd
-x(:,4) = (G'*G)\(G'*b);
+xx(:,4) = (G'*G)\(G'*b);
 
 %%
 % Plotting the svd solution, adding pretty things:
-SVD = plot(t,A*x(:,4),'black');
+SVD = plot(t,A*xx(:,4),'black');
 set(SVD,'LineWidth',2)
 legend('COS','BACKSLASH','NORMAL','QR','SVD')
 title('Solving y = cos(4t) in different ways')
@@ -79,18 +79,18 @@ hold off
 
 %% 
 % Solutions of x:
-x
+xx
 %%
 % Norms:
 for c = 1:4
-    norm(A*x(:,c)-b,2)
+    norm(A*xx(:,c)-b,2)
 end
 
 %% Problem 3
 % 
 for c = 1:4
         
-Error(c) = cond(A*x(:,c));
+Error(c) = cond(A*xx(:,c));
 
 end
 
@@ -108,7 +108,8 @@ if (n ~= n2)
 end
 
 
-%% Build a discrete 2D Laplace operator
+%% Problem 4 
+% Build a discrete 2D Laplace operator
 e = ones(n,1);
 L1 = spdiags([e  -2*e  e], [-1 0 1], n, n);
 % this next line implements "Neumann boundary conditions": you could
@@ -159,5 +160,34 @@ unsharp = u + edgemap;
 result = [u  unsharp];
 imwrite(result, 'result.png')
 
+%% Problem 5
 
+xx = [3,1,0,-1,-2,0,-2,2]'
+yy = [3,-2,3,2,-2,-4,0,0]'
 
+scatter(xx,yy,100,'r','filled')
+axis([-4,4,-4,4])
+
+for a = 1 : length(xx)
+    A(a,1) = xx(a).^2
+end
+
+for a = 1 : length(xx)
+    A(a,2) = xx(a)*yy(a)
+end
+
+for a = 1 : length(xx)
+    A(a,3) = yy(a).^2
+end
+
+b = ones(length(A),1)
+X = A\b
+
+x = linspace(-4,4,1000)
+
+y1 = (-X(2)*x + sqrt((X(2)*x).^2-4*X(3)*(X(1)*x.^2-1)))./(2*X(3))
+y2 = (-X(2)*x - sqrt((X(2)*x).^2-4*X(3)*(X(1)*x.^2-1)))./(2*X(3))
+
+plot(x,y1)
+hold on
+plot(x,y2)
