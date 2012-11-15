@@ -86,11 +86,6 @@ for c = 1:4
     norm(A*xx(:,c)-b,2)
 end
 
-
-
-
-
-
 %% Problem 3
 % 
 for c = 1:4
@@ -100,94 +95,90 @@ Error(c) = cond(A*xx(:,c));
 end
 
 %% Problem 4
-% 
-%% Read an image from a file
-u = imread('testpat_blur2.png');
-%u = imread('eye.png');
-% convert image to double and scale to [0,1]
-u = double(u) / 255;
 
-[n,n2] = size(u);
-if (n ~= n2)
-  error('by default, this only supports square images')
-end
+clear all
+% PART 1
 
+type('readimg.m')
+[u] = readimg('testpat_blur2.png');
+%% Build a discrete 2D Laplace operator
+type('unsharpen.m')
 
-%% Problem 4 
-% Build a discrete 2D Laplace operator
-ac = ones(n,1);
-L1 = spdiags([ac  -2*ac  ac], [-1 0 1], n, n);
-% this next line implements "Neumann boundary conditions": you could
-% try commenting it out.
-L1(1,1) = -1;   L1(end,end) = -1;
-I = speye(n,n);
-L = kron(L1, I) + kron(I, L1);
+unsharp = unsharpen(u,10); % Apply image unsharp mask
 
+figure(1); clf; % Clears figure for new images
 
-figure(1); clf;
-%pcolor(u); % try this one too
-imagesc(u);
-caxis([0 1])
-colormap(gray)
-axis equal, axis tight
+subplot(1,2,1), imagesc(u);
+type('greyimg.m')
+greyimg();
 
+subplot(1,2,2), imagesc(unsharp);
+greyimg();
 
-% "stretch" the matrix representation of the image into one long
-% vector.
-v = reshape(u, n*n, 1);
+%%
+% Image becomes blurred!
 
-% L IS THE BLURRING!
+%% PART 2
 
+[u] = readimg('testpat_noblur.png'); % Read image from file
 
-% Do 10 steps of blurring
-for i=1:10
-  v = v + 0.01*(L*v);
-end
+unsharp = unsharpen(u,10); % Apply image unsharp mask
 
-% convert the long vector back into a matrix
-ublur = reshape(v, n, n);
+figure(1); clf; % Clears figure for new images
+
+%%
+% Plots full size and zoomed versions of original image, 10 step blurring
+% and 100 step blurring.
+subplot(3,2,1), imagesc(u);
+greyimg();
+title('Original "testpat noblur.png"')
+
+subplot(3,2,2), imagesc(u);
+greyimg();
+axis([30 60 30 60])
+title('Zoomed original')
 
 
-figure(2); clf;
-imagesc(ublur);
-caxis([0 1])
-colormap(gray)
-axis equal, axis tight
-
-edgemap = u - ublur;
-
-unsharp = u + edgemap;
+subplot(3,2,3), imagesc(unsharp);
+greyimg();
+title('Unsharpened image"')
 
 
-%% Output original and result side-by-side
-% You could look at the resulting file with a web browser or image
-% viewer
-result = [u  unsharp];
-imwrite(result, 'result.png')
+subplot(3,2,4), imagesc(unsharp);
+greyimg();
+axis([30 60 30 60])
+title('Unsharpened zoomed at edge, 10 blurring steps')
+
+unsharp100 = unsharpen(u,100);
+
+subplot(3,2,5), imagesc(unsharp100);
+greyimg();
+title('Unsharpened image"')
+
+subplot(3,2,6), imagesc(unsharp100);
+greyimg();
+axis([30 60 30 60])
+title('Unsharpened zoomed at edge, 100 blurring steps')
+
+hold off
+
+%%
+% The sharpening of the image enhances the contrast between points that are
+% already contrasting. For a unblurred image, this ramps up the "whiteness"
+% of the image to the point of making it "grainy", as can be seen on the
+% zoomed plot of the 100 stepped blurring image.
 
 %% Problem 5
 % What is the data we want to fit against?
 xx = [3,1,0,-1,-2,0,-2,2]'
 yy = [3,-2,3,2,-2,-4,0,0]'
 % Having a look:
+figure(2);
 scatter(xx,yy,100,'r','filled')
 axis([-6,6,-6,6])
 hold on
 
-% Using the ellipse function to produce b,c,d:
-%
-% function [b,c,d] = ellipse(x,y)
-%     
-%     A(:,1) = x.^2;
-%     A(:,2) = x.*y;
-%     A(:,3) = y.^2;
-% 
-% b = ones(length(A),1);
-% X = A\b;
-% 
-% b = X(1);
-% c = X(2);
-% d = X(3);
+type('ellipse.m')
 
 [b,c,d] = ellipse(xx,yy);
 
@@ -197,9 +188,10 @@ grid on
 
 ellipseplot(b,c,d);
 %%
-clear all
 
-hold off, axis([-3 3 -3 3]), axis manual, hold on, grid on
+figure(3);
+
+axis([-3 3 -3 3]), axis manual, hold on, grid on
 x = []; y = []; button = 1;
 disp('input points with mouse, button >= 2 for final point')
 while button == 1
@@ -210,5 +202,4 @@ end
 [b,c,d] = ellipse(x,y)
 ellipseplot(b,c,d);
 
-
-
+clear all
