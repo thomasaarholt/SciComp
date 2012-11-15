@@ -115,8 +115,8 @@ end
 
 %% Problem 4 
 % Build a discrete 2D Laplace operator
-e = ones(n,1);
-L1 = spdiags([e  -2*e  e], [-1 0 1], n, n);
+ac = ones(n,1);
+L1 = spdiags([ac  -2*ac  ac], [-1 0 1], n, n);
 % this next line implements "Neumann boundary conditions": you could
 % try commenting it out.
 L1(1,1) = -1;   L1(end,end) = -1;
@@ -173,6 +173,7 @@ yy = [3,-2,3,2,-2,-4,0,0]'
 scatter(xx,yy,100,'r','filled')
 axis([-6,6,-6,6])
 hold on
+<<<<<<< HEAD
 
 % Using the ellipse function to produce b,c,d:
 %
@@ -204,3 +205,27 @@ hold on
 plot(x,y2);
 
 hold off
+=======
+grid on
+
+[b,c,d] = ellipse(xx,yy);
+
+ellipseplot(b,c,d);
+%%
+
+clear all
+
+hold off, axis([-3 3 -3 3]), axis manual, hold on, grid on
+x = []; y = []; button = 1;
+disp('input points with mouse, button >= 2 for final point')
+while button == 1
+[xx,yy,button] = ginput(1)
+x = [x; xx]; y = [y; yy]; plot(xx,yy,'x')
+end
+
+[b,c,d] = ellipse(x,y)
+ellipseplot(b,c,d);
+
+
+
+>>>>>>> Fixed ellipse!
