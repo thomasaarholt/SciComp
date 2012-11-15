@@ -3,8 +3,6 @@
 
 t = [3,1,0,-1,-2,0,-2,2]'
 A = [ cos(0*t) sin(t) cos(t) sin(2*t) cos(2*t) ]
-A'*A
-plot(t,A)
 %%
 b = [3,-2,3,2,-2,-4,0,0]'
 scatter(t,b,'ok'), grid on

@@ -86,6 +86,11 @@ for c = 1:4
     norm(A*xx(:,c)-b,2)
 end
 
+
+
+
+
+
 %% Problem 3
 % 
 for c = 1:4
@@ -161,33 +166,41 @@ result = [u  unsharp];
 imwrite(result, 'result.png')
 
 %% Problem 5
-
+% What is the data we want to fit against?
 xx = [3,1,0,-1,-2,0,-2,2]'
 yy = [3,-2,3,2,-2,-4,0,0]'
-
+% Having a look:
 scatter(xx,yy,100,'r','filled')
-axis([-4,4,-4,4])
-
-for a = 1 : length(xx)
-    A(a,1) = xx(a).^2
-end
-
-for a = 1 : length(xx)
-    A(a,2) = xx(a)*yy(a)
-end
-
-for a = 1 : length(xx)
-    A(a,3) = yy(a).^2
-end
-
-b = ones(length(A),1)
-X = A\b
-
-x = linspace(-4,4,1000)
-
-y1 = (-X(2)*x + sqrt((X(2)*x).^2-4*X(3)*(X(1)*x.^2-1)))./(2*X(3))
-y2 = (-X(2)*x - sqrt((X(2)*x).^2-4*X(3)*(X(1)*x.^2-1)))./(2*X(3))
-
-plot(x,y1)
+axis([-6,6,-6,6])
 hold on
-plot(x,y2)
+
+% Using the ellipse function to produce b,c,d:
+%
+% function [b,c,d] = ellipse(x,y)
+%     
+%     A(:,1) = x.^2;
+%     A(:,2) = x.*y;
+%     A(:,3) = y.^2;
+% 
+% b = ones(length(A),1);
+% X = A\b;
+% 
+% b = X(1);
+% c = X(2);
+% d = X(3);
+
+[b,c,d] = ellipse(xx,yy);
+
+x = linspace(-6,6,1000);
+
+y1 = (-c*x + sqrt((c*x).^2-4*d*(b*x.^2-1)))./(2*d);
+y2 = (-c*x - sqrt((c*x).^2-4*d*(b*x.^2-1)))./(2*d);
+
+y1 = real(y1);
+y2 = real(y2);
+
+plot(x,y1);
+hold on
+plot(x,y2);
+
+hold off
