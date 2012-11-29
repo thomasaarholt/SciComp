@@ -1,4 +1,4 @@
-function [xbig, ybig, deltaFmax, foundlarger] = maxfind1(xold, yold, xbig, ybig, deltaFmax, F, radius)
+function [xbig, ybig, deltaFmax, foundlarger] = startingpoint(xold, yold, xbig, ybig, deltaFmax, F, radius)
 
 foundlarger = 0;
 phi = linspace(0,2*pi,360);

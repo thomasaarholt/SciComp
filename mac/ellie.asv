@@ -1,12 +1,8 @@
 %% Finding the biggest delta-F if one drops a unit length pin in the XY plane.
 % Constants:
-clear all
-clc
-
-
 
 n = 2;
-m = 50;
+m = 100;
 x = -n:1/m:n; y = x;
 [X,Y] = meshgrid(x,y);
 
@@ -47,8 +43,11 @@ while foundlarger == 1
     
     xold = xbig;
     yold = ybig;
+pause
 end
 %%
+
+foundlarger
 
 if F(XY(end, 1),XY(end,2)) > F(XY(end-1,1),XY(end-1,2))
     peak = XY(end, :)
@@ -63,4 +62,9 @@ end
 scatter(peak(1,1),peak(1,2),'red','filled');
 scatter(trough(1,1),trough(1,2),'blue','filled');
 
-[xbigpeak, ybigpeak, localdeltaFmax, foundlarger] = maxfind2(peak, trough, F, deltaFmax);
+[xbigpeak, ybigpeak, deltaFmax, foundlarger] = maxfind2(peak, trough, F);
+
+pause
+
+surf(X,Y,F(X,Y))
+plot3(

@@ -1,4 +1,4 @@
-function [FinalPeak, FinalTrough, deltaFmax, localdeltaFmax, foundlarger] = maxfind2(peak, trough, F, deltaFmax)
+function [FinalPeak, FinalTrough, deltaFmax, localdeltaFmax, foundlarger] = improver(peak, trough, F, deltaFmax)
 
 radius = 0.05;
 biggestlocal = 0;
@@ -15,7 +15,7 @@ oldF = F(peak(1,1),peak(1,2));
 
 
 for i = 1 : 360
-
+%% Create a circle of smaller radius around the peak
 xadd = radius*cos(phi(i));
 yadd = radius*sin(phi(i));
 
@@ -53,6 +53,7 @@ newdeltaF = biglocal(i,3) - Fnewtrough;
 if  newdeltaF > deltaFmax
     scatter(xnewtrough,ynewtrough, 'red', 'filled');
     deltaFmax = newdeltaF;
+    
     FinalPeak = biglocal(i,1:3);
     FinalTrough = [xnewtrough, ynewtrough, Fnewtrough];
 end

@@ -1,0 +1,55 @@
+function [xbigpeak, ybigpeak, localdeltaFmax, foundlarger] = maxfind2(peak, trough, F)
+    
+radius = 0.5;
+biggestlocal = 0
+n = 0;
+xbigpeak = peak(1,1);
+ybigpeak = peak(1,2);
+    
+localdeltaFmax = abs(F(xbigpeak,ybigpeak));
+
+foundlarger = 0;
+phi = linspace(0,2*pi,360);
+
+oldpeak = peak;
+oldtrough = trough;
+
+oldF = F(oldpeak(1,1),oldpeak(1,2));
+
+
+for i = 1 : 360
+
+xadd = radius*cos(phi(i));
+yadd = radius*sin(phi(i));
+
+newpeak(1,1) = oldpeak(1,1) + xadd;
+newpeak(1,2) = oldpeak(1,2) + yadd;
+
+newF = F(newpeak(1,1),newpeak(1,2));
+
+localdeltaF = newF - oldF;
+
+if localdeltaF >= biggestlocal
+    n = n + 1;
+    foundlarger = 1;
+    biggestlocal = localdeltaF;
+    biglocal(n,:) = [newpeak(1,1), newpeak(1,2), newF, xadd, yadd];
+
+    
+    localdeltaFmax = localdeltaF;
+    xbigpeak = newpeak(1,1);
+    ybigpeak = newpeak(1,2);
+    
+    scatter(xbigpeak,ybigpeak, 'red', 'filled');
+    foundlarger;
+end
+
+end
+for i = 0 : length(biglocal)
+
+newtrough(1,1) = trough(1,1) + biglocal(i,4)
+newtrough(1,2) = 
+F(
+
+
+end
